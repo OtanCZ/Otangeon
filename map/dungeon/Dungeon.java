@@ -18,26 +18,27 @@ import static com.till.projekty.rpg.Main.player;
 
 public class Dungeon {
     public static void startDungeon(int roomsToBoss){
-        System.out.println("Jdeš k Dungeonu.");
+        Utils.printText("Jdeš k Dungeonu.", 20);
 
         for (int i = 0; i < roomsToBoss; i++) {
             chooseNextRoom();
             roomLogic();
         }
+        Utils.printText("Vracíš se z dungeonu.", 20);
     }
 
     public static void roomLogic(){
         switch(nextRoom()){
-            case Empty -> System.out.println("Narazil si na prázdnou místnost.");
+            case Empty -> Utils.printText("Narazil si na prázdnou místnost.", 20);
             case Encounter -> encounterRoom();
             case Chest -> chestRoom();
-            default -> System.err.println("Jseš kokot nemá to tu být.");
+            default -> {}
         }
     }
 
     public static void chestRoom(){
         while(true){
-            System.out.println("Našel jsi bednu, chceš jí otevřít?");
+            Utils.printText("Našel jsi bednu, chceš jí otevřít?", 20);
             System.out.println("1 - Ano");
             System.out.println("2 - Ne");
 
@@ -54,8 +55,8 @@ public class Dungeon {
         newPlayerInv.add(generatedItem);
 
         while(true){
-            System.out.println("Našel jsi " + generatedItem.getRarity() + " " + generatedItem.getName() + ".");
-            System.out.println("Chceš je vzít?");
+            Utils.printText("Našel jsi " + generatedItem.getRarity() + " " + generatedItem.getName() + ".", 20);
+            Utils.printText("Chceš je vzít?", 20);
             System.out.println("1 - Ano");
             System.out.println("2 - Ne");
 
@@ -100,7 +101,7 @@ public class Dungeon {
     public static void chooseNextRoom(){
         //lmao když je iluze velká, literally je jedno co člověk vybere xddd
         while(true){
-            System.out.println("Kam chceš jít dál?");
+            Utils.printText("Kam chceš jít dál?", 20);
             System.out.println("0 - Menu");
 
             for (int i = 1; i <= Utils.random(1, 3); i++) {

@@ -9,6 +9,7 @@ import static com.till.projekty.rpg.Main.player;
 public class Fight {
     public static void fight(Player player, Entity enemy) {
         Utils.printText("Potkal jsi " + enemy.getName() + ".", 50);
+
         while (true) {
             FightStates playerState = playerTurn(player, enemy);
             FightStates enemyState = enemyTurn(player, enemy);
@@ -32,14 +33,13 @@ public class Fight {
             }
 
             if(playerState == FightStates.Defending && enemyState == FightStates.Attacking){
-
                 player.setHp(player.getHp() - (enemy.getDamage()/2 + Math.max(enemy.getDamage()/2-player.getDefense(), 0))/3);
                 Utils.printText(enemy.getName() + " zaútočil na bránicí se " + player.getName() + " -" + (enemy.getDamage()/2 + Math.max(enemy.getDamage()/2-player.getDefense(), 0))/3 + " hp! (" + player.getHp() + "/" + player.getMaxhp() + ")", 30);
             }
 
             else if(enemyState == FightStates.Attacking){
-                player.setHp((player.getHp() - (enemy.getDamage()/2 + (enemy.getDamage()/2 + Math.max(enemy.getDamage()/2-player.getDefense(), 0)))));
-                Utils.printText(enemy.getName() + " zaútočil na " + player.getName() + " -" + (enemy.getDamage()/2 + (enemy.getDamage()/2 + Math.max(enemy.getDamage()/2-player.getDefense(), 0))) + " hp! (" + player.getHp() + "/" + player.getMaxhp() + ")", 30);
+                player.setHp((player.getHp() - (enemy.getDamage()/2 + Math.max(enemy.getDamage()/2-player.getDefense(), 0))));
+                Utils.printText(enemy.getName() + " zaútočil na " + player.getName() + " -" + (enemy.getDamage()/2 + Math.max(enemy.getDamage()/2-player.getDefense(), 0)) + " hp! (" + player.getHp() + "/" + player.getMaxhp() + ")", 30);
             }
 
             else if(enemyState == FightStates.Defending){

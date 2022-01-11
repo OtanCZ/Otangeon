@@ -48,8 +48,8 @@ public class Game {
     }
 
     public static void drinkBeer(){
-        Utils.printText("Ty píčo, to byl chálec.", 20);
         if(player.getMoney() >= 5){
+            Utils.printText("Ty píčo, to byl chálec.", 20);
             player.setMoney(player.getMoney()-5);
 
             if(player.getHp()+5 > player.getMaxhp()){
@@ -58,6 +58,9 @@ public class Game {
             else{
                 player.setHp(player.getHp()+5);
             }
+        }
+        else{
+            Utils.printText("Na to nemáš peníze!", 20);
         }
     }
 
